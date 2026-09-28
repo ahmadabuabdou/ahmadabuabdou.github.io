@@ -60,7 +60,7 @@ const I18N = {
     "footer.line": "Designed & built with resilience in Gaza, Palestine 🍉",
     "footer.copy": "© 2026 Ahmad Abu Abdou — أحمد أبو عبده",
     "cursor.view": "View",
-    "marquee": ["Storytelling", "UX Design", "Resilience", "Gaza 🇵🇸", "Empathy", "Clarity", "Open Screenplay"]
+    "marquee": ["Storytelling", "UX Design", "Resilience", "Gaza 🇵🇸", "Empathy", "Clarity", "Open Screenplay"],
     "exp.kicker": "Trajectory",
     "exp.title": "Milestones & craft.",
     "exp.sub": "From software roots in Gaza to leading design systems and AI products.",
@@ -135,7 +135,7 @@ const I18N = {
     "footer.line": "صُمّم وبُني بصمود في غزة، فلسطين 🍉",
     "footer.copy": "© 2026 أحمد أبو عبده — Ahmad Abu Abdou",
     "cursor.view": "عرض",
-    "marquee": ["سرد القصص", "تجربة المستخدم", "الصمود", "غزة 🇵🇸", "التعاطف", "الوضوح", "Open Screenplay"]
+    "marquee": ["سرد القصص", "تجربة المستخدم", "الصمود", "غزة 🇵🇸", "التعاطف", "الوضوح", "Open Screenplay"],
     "exp.kicker": "المسار المهني",
     "exp.title": "محطات وخبرات.",
     "exp.sub": "من جذور هندسة البرمجيات في غزة إلى قيادة أنظمة التصميم ومنتجات الذكاء الاصطناعي.",
@@ -326,7 +326,7 @@ window.addEventListener("DOMContentLoaded", () => {
     tabExp.addEventListener("click", () => switchTab(tabExp, tabEdu, panelExp, panelEdu));
     tabEdu.addEventListener("click", () => switchTab(tabEdu, tabExp, panelEdu, panelExp));
   }
-  
+
   if (!hasGSAP || reduceMotion) {
     document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("revealed"));
     hideLoader();
