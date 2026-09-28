@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahmad Abu Abdou — UX/UI Designer · Gaza, Palestine</title>
+  <meta name="description" content="Ahmad Abu Abdou — a designer based in Gaza, crafting intuitive, story-driven digital experiences. Lead UX/UI Designer at Open Screenplay." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,600&family=Space+Grotesk:wght@300;400;500;700&family=Noto+Kufi+Arabic:wght@300;400;600;800&family=Aref+Ruqaa:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-lang="en">
+
+  <!-- ══════════ CUSTOM CURSOR ══════════ -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"><span class="cursor-label"></span></div>
+
+  <!-- ══════════ SCROLL THREAD (tatreez progress) ══════════ -->
+  <div class="scroll-thread" aria-hidden="true">
+    <svg class="thread-svg" preserveAspectRatio="none">
+      <line class="thread-base" x1="12" y1="0" x2="12" y2="100%" />
+      <line class="thread-fill" x1="12" y1="0" x2="12" y2="100%" />
+      <circle class="thread-needle" cx="12" cy="0" r="5" />
+    </svg>
+  </div>
+
+  <!-- ══════════ PRELOADER ══════════ -->
+  <div class="loader" aria-hidden="true">
+    <div class="loader-stitch">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <p class="loader-word" data-i18n="loader">Stitching the story…</p>
+  </div>
+
+  <!-- ══════════ NAV ══════════ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav-logo magnetic">
+      <span class="logo-x">✕</span>
+      <span class="logo-text" data-i18n="logo">Ahmad<span class="logo-accent">.</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#story" class="nav-link magnetic" data-i18n="nav.story">Story</a>
+      <a href="#work" class="nav-link magnetic" data-i18n="nav.work">Work</a>
+      <a href="#contact" class="nav-link magnetic" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="nav-controls">
+      <button class="ctrl-btn lang-toggle magnetic" id="langToggle" aria-label="Switch language">ع</button>
+      <button class="ctrl-btn theme-toggle magnetic" id="themeToggle" aria-label="Toggle theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ══════════ HERO ══════════ -->
+    <section class="hero">
+      <div class="hero-bg-pattern" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-text">
+          <p class="hero-eyebrow" data-reveal>
+            <span class="eyebrow-stitch" aria-hidden="true">✕</span>
+            <span data-i18n="hero.eyebrow">UX/UI Designer — Gaza, Palestine</span>
+          </p>
+          <h1 class="hero-name" aria-label="Ahmad Abu Abdou">
+            <span class="name-line name-en"><span class="split">Ahmad</span></span>
+            <span class="name-line name-en name-outline"><span class="split">Abu Abdou</span></span>
+            <span class="name-ar" lang="ar">أحمد أبو عبده</span>
+          </h1>
+          <p class="hero-tagline" data-reveal data-i18n="hero.tagline">
+            A designer based in Gaza, crafting intuitive, story-driven digital
+            experiences — leading UX/UI at Open Screenplay to make screenwriting
+            more inclusive, collaborative, and empowering for storytellers
+            around the world.
+          </p>
+          <div class="hero-cta" data-reveal>
+            <a href="#work" class="btn btn-primary magnetic" data-i18n="hero.cta1">See my work</a>
+            <a href="#story" class="btn btn-ghost magnetic" data-i18n="hero.cta2">Read my story</a>
+          </div>
+        </div>
+
+        <div class="hero-media" data-reveal>
+          <div class="hero-frame">
+            <img src="assets/portrait-olive.jpg" alt="Ahmad Abu Abdou wearing a keffiyeh among olive trees" class="hero-img" data-parallax="0.12" />
+            <div class="frame-stitches" aria-hidden="true"></div>
+          </div>
+          <p class="hero-caption" data-i18n="hero.caption">Among the olive trees 🫒</p>
+        </div>
+      </div>
+
+      <a href="#story" class="scroll-hint magnetic" aria-label="Scroll down">
+        <span class="scroll-hint-text" data-i18n="hero.scroll">scroll</span>
+        <span class="scroll-hint-line"></span>
+      </a>
+    </section>
+
+    <!-- ══════════ MARQUEE ══════════ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        <!-- filled by JS, duplicated for loop -->
+      </div>
+    </div>
+
+    <!-- ══════════ STORY ══════════ -->
+    <section class="story" id="story">
+      <header class="section-head">
+        <p class="section-kicker" data-reveal><span class="kicker-x">✕</span><span data-i18n="story.kicker">The Story</span></p>
+        <h2 class="section-title" data-reveal data-i18n="story.title">Five chapters, one thread.</h2>
+      </header>
+
+      <!-- Chapter 1 -->
+      <article class="chapter" id="ch1">
+        <div class="chapter-num" aria-hidden="true"><span>01</span></div>
+        <div class="chapter-body">
+          <h3 class="chapter-title" data-reveal data-i18n="ch1.title">Where I Come From</h3>
+          <blockquote class="chapter-quote" data-reveal>
+            <span class="quote-mark" aria-hidden="true">”</span>
+            <span data-i18n="ch1.quote">Resilience isn’t a trait — it’s a way of life.</span>
+          </blockquote>
+          <p class="chapter-text" data-reveal data-i18n="ch1.text">
+            I was born and raised in Gaza, a place where resilience is woven into everyday life.
+            After losing my father at the age of ten, I grew up quickly — the only brother to two
+            sisters, raised by a mother who became my anchor and inspiration: loving, endlessly
+            resourceful — my entire world. Her strength taught me what it means to show up every
+            day, to adapt, and to care deeply. That foundation shaped who I am — not just as a
+            person, but as a designer.
+          </p>
+        </div>
+      </article>
+
+      <div class="tatreez-band" data-band aria-hidden="true"></div>
+
+      <!-- Chapter 2 -->
+      <article class="chapter chapter-alt" id="ch2">
+        <div class="chapter-num" aria-hidden="true"><span>02</span></div>
+        <div class="chapter-body">
+          <h3 class="chapter-title" data-reveal data-i18n="ch2.title">Discovering Design</h3>
+          <p class="chapter-text" data-reveal data-i18n="ch2.text">
+            Although I pursued software engineering in college, design had already found a quiet
+            place in my life. I spent hours in school playing with graphic design — creating
+            posters, banners, and digital visuals, not for grades but for fun. The more I explored,
+            the more I realized I was drawn to how digital experiences make people feel — how
+            design can simplify the complex and guide people with clarity and warmth.
+          </p>
+          <blockquote class="chapter-quote" data-reveal>
+            <span class="quote-mark" aria-hidden="true">”</span>
+            <span data-i18n="ch2.quote">Design, to me, was never just visual — it was emotional.</span>
+          </blockquote>
+        </div>
+      </article>
+
+      <div class="tatreez-band" data-band aria-hidden="true"></div>
+
+      <!-- Chapter 3 -->
+      <article class="chapter" id="ch3">
+        <div class="chapter-num" aria-hidden="true"><span>03</span></div>
+        <div class="chapter-body">
+          <h3 class="chapter-title" data-reveal data-i18n="ch3.title">My First Steps</h3>
+          <blockquote class="chapter-quote" data-reveal>
+            <span class="quote-mark" aria-hidden="true">”</span>
+            <span data-i18n="ch3.quote">No roadmap. No portfolio. Just grit, passion, and late nights.</span>
+          </blockquote>
+          <p class="chapter-text" data-reveal data-i18n="ch3.text">
+            My journey began in software engineering, but design was always the silent pulse
+            beneath the code. Driven by a desire to build products that feel intuitive and kind,
+            I transitioned into design immediately after graduation — a freelancing bootcamp and a
+            single client, a restaurant in Ramallah — then quickly expanded to international
+            projects, including a dental platform in the UAE. That momentum led me to Apex for IT
+            Solutions, where I served as the sole designer across all web and mobile platforms,
+            leading end-to-end design for a range of clients. It became the defining chapter that
+            proved one thing: with enough grit, passion can be forged into a professional craft.
+          </p>
+        </div>
+      </article>
+
+      <div class="tatreez-band" data-band aria-hidden="true"></div>
+
+      <!-- Chapter 4 -->
+      <article class="chapter chapter-alt chapter-with-media" id="ch4">
+        <div class="chapter-num" aria-hidden="true"><span>04</span></div>
+        <div class="chapter-body">
+          <h3 class="chapter-title" data-reveal data-i18n="ch4.title">Finding My Place</h3>
+          <p class="chapter-text" data-reveal data-i18n="ch4.text">
+            In 2021, I joined Open Screenplay — a platform dedicated to democratizing the craft of
+            screenwriting. It was an immediate alignment of mission and craft. What began with a
+            single redesign evolved into a multi-year journey of architecting the platform’s entire
+            UX/UI ecosystem. I led the transition to a unified design system, refined the core
+            script editor for better creative flow, and launched a cinematic showcase for the
+            M Film Lab. My role wasn’t just about building interfaces; it was about creating the
+            digital infrastructure that lets writers bridge the gap between a blank page and a
+            produced reality. At Open Screenplay, I learned that the best designs don’t just look
+            good — they empower voices to be heard.
+          </p>
+          <blockquote class="chapter-quote" data-reveal>
+            <span class="quote-mark" aria-hidden="true">”</span>
+            <span data-i18n="ch4.quote">Each project is a story — one that starts with empathy and ends in clarity.</span>
+          </blockquote>
+        </div>
+        <figure class="chapter-media" data-reveal>
+          <img src="assets/portrait-studio.jpg" alt="Ahmad at his studio with a keffiyeh pocket square and tatreez details" data-parallax="0.08" />
+        </figure>
+      </article>
+
+      <div class="tatreez-band" data-band aria-hidden="true"></div>
+
+      <!-- Chapter 5 -->
+      <article class="chapter" id="ch5">
+        <div class="chapter-num" aria-hidden="true"><span>05</span></div>
+        <div class="chapter-body">
+          <h3 class="chapter-title" data-reveal data-i18n="ch5.title">What Drives Me</h3>
+          <blockquote class="chapter-quote" data-reveal>
+            <span class="quote-mark" aria-hidden="true">”</span>
+            <span data-i18n="ch5.quote">I design for people — and the stories they carry.</span>
+          </blockquote>
+          <p class="chapter-text" data-reveal data-i18n="ch5.text">
+            For me, design is an act of resilience. Coming from Gaza, I have seen firsthand that
+            storytelling is more than a creative outlet — it is a necessity, and access to it is a
+            right. I don’t just build interfaces; I create pathways for voices that might otherwise
+            go unheard. Design is how I support my family, how I connect with a global community,
+            and how I turn the complexity of logic into the simplicity of human connection. I am a
+            lifelong student of this discipline — still building, still learning, and still deeply
+            in love with the work of opening doors for others.
+          </p>
+          <p class="chapter-final" data-reveal data-i18n="ch5.final">
+            Design is not just my craft — it is my response to the world.
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ══════════ WORK ══════════ -->
+    <section class="work" id="work">
+      <header class="section-head">
+        <p class="section-kicker" data-reveal><span class="kicker-x">✕</span><span data-i18n="work.kicker">Selected Work</span></p>
+        <h2 class="section-title" data-reveal data-i18n="work.title">Projects that carry stories.</h2>
+        <p class="section-sub" data-reveal data-i18n="work.sub">From a first client in Ramallah to five years leading design for storytellers worldwide.</p>
+      </header>
+
+      <!-- Featured: Open Screenplay -->
+      <a href="https://openscreenplay.com" target="_blank" rel="noopener" class="project project-featured" data-reveal data-cursor="view">
+        <div class="project-media">
+          <img src="assets/work-openscreenplay.jpg" alt="Open Screenplay platform" data-parallax="0.06" />
+        </div>
+        <div class="project-info">
+          <div class="project-meta">
+            <span class="project-tag" data-i18n="p1.tag">Lead UX/UI Designer · 2021 — Present</span>
+          </div>
+          <h3 class="project-name">Open Screenplay</h3>
+          <p class="project-desc" data-i18n="p1.desc">
+            Democratizing screenwriting — architecting the platform’s entire UX/UI ecosystem, from
+            a unified design system to the core script editor and the M Film Lab showcase.
+          </p>
+          <span class="project-link" data-i18n="work.visit">Visit site ↗</span>
+        </div>
+      </a>
+
+      <div class="project-grid">
+        <a href="https://www.behance.net/gallery/85082933/Fitafe-Web-UXUI" target="_blank" rel="noopener" class="project" data-reveal data-cursor="view">
+          <div class="project-media"><img src="assets/work-fitafe.jpg" alt="Fitafe healthy meal plans website" data-parallax="0.06" /></div>
+          <div class="project-info">
+            <span class="project-tag" data-i18n="p2.tag">First Client · Ramallah</span>
+            <h3 class="project-name">Fitafe’</h3>
+            <p class="project-desc" data-i18n="p2.desc">Healthy meal plans, hand-crafted and tailored to your goals — where it all began.</p>
+            <span class="project-link">View on Behance ↗</span>
+          </div>
+        </a>
+
+        <a href="https://www.behance.net/gallery/74037365/UDENZ-app-UI" target="_blank" rel="noopener" class="project" data-reveal data-cursor="view">
+          <div class="project-media"><img src="assets/work-udenz.jpg" alt="Udenz dental appointment app" data-parallax="0.06" /></div>
+          <div class="project-info">
+            <span class="project-tag" data-i18n="p3.tag">Mobile App · UAE</span>
+            <h3 class="project-name">Udenz</h3>
+            <p class="project-desc" data-i18n="p3.desc">A dental platform connecting patients and dentists across the UAE — booking made human.</p>
+            <span class="project-link">View on Behance ↗</span>
+          </div>
+        </a>
+
+        <article class="project" data-reveal data-cursor="view">
+          <div class="project-media"><img src="assets/work-alsada.jpg" alt="Alsada tribe community app" data-parallax="0.06" /></div>
+          <div class="project-info">
+            <span class="project-tag" data-i18n="p4.tag">Mobile App · Qatar</span>
+            <h3 class="project-name" data-i18n="p4.name">Alsada Tribe</h3>
+            <p class="project-desc" data-i18n="p4.desc">A community and charity app for a Qatari tribe — heritage, designed with care.</p>
+          </div>
+        </article>
+
+        <article class="project" data-reveal data-cursor="view">
+          <div class="project-media"><img src="assets/work-digitallab.jpg" alt="The Digital Lab platform" data-parallax="0.06" /></div>
+          <div class="project-info">
+            <span class="project-tag" data-i18n="p5.tag">Apex for IT Solutions</span>
+            <h3 class="project-name">The Digital Lab</h3>
+            <p class="project-desc" data-i18n="p5.desc">Sole designer across all web and mobile platforms — end-to-end, from brief to launch.</p>
+          </div>
+        </article>
+        <a href="https://www.mfilmlab.com/" target="_blank" rel="noopener" class="project" data-reveal data-cursor="view">
+          <div class="project-media"><img src="assets/work-mfilmlab.jpg" alt="The M Film Lab — empowering minority filmmakers" data-parallax="0.06" /></div>
+          <div class="project-info">
+            <span class="project-tag">UX/UI Designer · Adobe XD · March 2022</span>
+            <h3 class="project-name">The M Film Lab</h3>
+            <p class="project-desc">A world where all minorities and cultural groups have the pathway and artistic representation to tell their stories — identifying and developing underrepresented filmmakers and giving them tangible opportunities.</p>
+            <span class="project-link">View live ↗</span>
+          </div>
+        </a>
+
+        <a href="https://www.behance.net/gallery/101648041/Election-campaign-UXUI" target="_blank" rel="noopener" class="project" data-reveal data-cursor="view">
+          <div class="project-media"><img src="assets/work-election.jpg" alt="Election campaign mobile app and control panel" data-parallax="0.06" /></div>
+          <div class="project-info">
+            <span class="project-tag">UX/UI Designer · Adobe XD · July 2020</span>
+            <h3 class="project-name">Election Campaign</h3>
+            <p class="project-desc">Delegates log manual votes in a mobile app while results update live in a control panel — from the voting stage to counting, through to detailed candidate and voter statistics.</p>
+            <span class="project-link">View on Behance ↗</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ══════════ CONTACT ══════════ -->
+    <section class="contact" id="contact">
+      <div class="contact-media" data-reveal>
+        <img src="assets/portrait-teal.jpg" alt="Portrait of Ahmad Abu Abdou" data-parallax="0.08" />
+      </div>
+      <div class="contact-body">
+        <p class="section-kicker" data-reveal><span class="kicker-x">✕</span><span data-i18n="contact.kicker">Contact</span></p>
+        <h2 class="contact-title" data-reveal data-i18n="contact.title">Let’s write the next story together.</h2>
+        <div class="contact-actions" data-reveal>
+          <a href="mailto:ahmad.a.k.abuabdou@gmail.com" class="btn btn-primary btn-big magnetic" data-i18n="contact.email">ahmad.a.k.abuabdou@gmail.com</a>
+          <a href="https://drive.google.com/file/d/1ffW-0TLmZeGq-PqHgqQNUGPI3uynj7t_/view" target="_blank" rel="noopener" class="btn btn-ghost magnetic" data-i18n="contact.cv">Download CV ↗</a>
+        </div>
+        <ul class="socials" data-reveal>
+          <li><a class="social-link magnetic" href="https://www.linkedin.com/in/ahmad-abuabdou" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a class="social-link magnetic" href="https://www.behance.net/Ahmad_Abuabdou" target="_blank" rel="noopener">Behance ↗</a></li>
+          <li><a class="social-link magnetic" href="https://twitter.com/ahmad_abuabdou" target="_blank" rel="noopener">Twitter ↗</a></li>
+          <li><a class="social-link magnetic" href="https://www.facebook.com/ahmad.abuabdou" target="_blank" rel="noopener">Facebook ↗</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="tatreez-band footer-band" data-band aria-hidden="true"></div>
+    <p class="footer-line" data-i18n="footer.line">Designed &amp; built with resilience in Gaza, Palestine 🍉</p>
+    <p class="footer-copy" data-i18n="footer.copy">© 2026 Ahmad Abu Abdou — أحمد أبو عبده</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
