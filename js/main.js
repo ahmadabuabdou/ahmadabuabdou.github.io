@@ -61,6 +61,27 @@ const I18N = {
     "footer.copy": "© 2026 Ahmad Abu Abdou — أحمد أبو عبده",
     "cursor.view": "View",
     "marquee": ["Storytelling", "UX Design", "Resilience", "Gaza 🇵🇸", "Empathy", "Clarity", "Open Screenplay"]
+    "exp.kicker": "Trajectory",
+    "exp.title": "Milestones & craft.",
+    "exp.sub": "From software roots in Gaza to leading design systems and AI products.",
+    "exp.tab_work": "Experience",
+    "exp.tab_edu": "Education",
+    "exp.job1_date": "April 2021 — Present",
+    "exp.job1_role": "Lead UX/UI Designer",
+    "exp.job1_company": "Open Screenplay",
+    "exp.job1_desc": "Architecting platform-wide design systems, real-time collaborative scriptwriting editor, and Rawi AI integration.",
+    "exp.job2_date": "December 2020 — April 2021",
+    "exp.job2_role": "Sole UX/UI Designer",
+    "exp.job2_company": "Apex for IT Solutions (The Digital Lab)",
+    "exp.job2_desc": "Sole designer across web and mobile products for regional clients (Udenz UAE, Fitafe' Ramallah, Alsada Tribe Qatar).",
+    "exp.job3_date": "2018 — 2020",
+    "exp.job3_role": "Product & UX/UI Designer",
+    "exp.job3_company": "Freelance / Contract",
+    "exp.job3_desc": "Designed digital products including election telemetry systems, consumer apps, and brand identities.",
+    "exp.edu_date": "2014 — 2018",
+    "exp.edu_degree": "BSc in Computer Systems Engineering",
+    "exp.edu_school": "Al-Azhar University of Gaza",
+    "exp.edu_desc": "Formed the technical and algorithmic foundation that bridges engineering feasibility with human-centered product design.",
   },
   ar: {
     "loader": "نخيط الحكاية…",
@@ -115,6 +136,27 @@ const I18N = {
     "footer.copy": "© 2026 أحمد أبو عبده — Ahmad Abu Abdou",
     "cursor.view": "عرض",
     "marquee": ["سرد القصص", "تجربة المستخدم", "الصمود", "غزة 🇵🇸", "التعاطف", "الوضوح", "Open Screenplay"]
+    "exp.kicker": "المسار المهني",
+    "exp.title": "محطات وخبرات.",
+    "exp.sub": "من جذور هندسة البرمجيات في غزة إلى قيادة أنظمة التصميم ومنتجات الذكاء الاصطناعي.",
+    "exp.tab_work": "الخبرة المهنية",
+    "exp.tab_edu": "التعليم الأكاديمي",
+    "exp.job1_date": "أبريل 2021 — الآن",
+    "exp.job1_role": "قائد تصميم تجربة وواجهة المستخدم",
+    "exp.job1_company": "Open Screenplay",
+    "exp.job1_desc": "قيادة منظومة التصميم للمنصة، ومحرر السيناريو التشاركي، وتكامل المساعد الذكي راوي.",
+    "exp.job2_date": "ديسمبر 2020 — أبريل 2021",
+    "exp.job2_role": "المصمم الوحيد لتجربة وواجهة المستخدم",
+    "exp.job2_company": "Apex لحلول تكنولوجيا المعلومات",
+    "exp.job2_desc": "تصميم شامل لكافة منصات الويب وتطبيقات الجوال للعملاء في المنطقة (Udenz، فتافيت، قبيلة آل سادة).",
+    "exp.job3_date": "2018 — 2020",
+    "exp.job3_role": "مصمم منتجات وتجربة مستخدم",
+    "exp.job3_company": "عمل حر ومشاريع تعاقدية",
+    "exp.job3_desc": "تصميم منتجات رقمية متنوعة شملت تطبيقات تتبع الحملات الانتخابية وتطبيقات المستخدمين.",
+    "exp.edu_date": "2014 — 2018",
+    "exp.edu_degree": "بكالوريوس هندسة أنظمة الحاسوب",
+    "exp.edu_school": "جامعة الأزهر — غزة",
+    "exp.edu_desc": "الأساس التقني والهندسي الذي جسر الهوة بين الجدوى البرمجية وتصميم المنتجات المرتكزة على الإنسان.",
   }
 };
 
@@ -259,7 +301,32 @@ window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("themeToggle").addEventListener("click", () => {
     applyTheme(THEME === "dark" ? "light" : "dark");
   });
+/* ── Experience / Education tab toggle ── */
+  const tabExp = document.getElementById("tabExpBtn");
+  const tabEdu = document.getElementById("tabEduBtn");
+  const panelExp = document.getElementById("panelExperience");
+  const panelEdu = document.getElementById("panelEducation");
 
+  if (tabExp && tabEdu) {
+    const switchTab = (activeBtn, inactiveBtn, showPanel, hidePanel) => {
+      activeBtn.classList.add("active");
+      activeBtn.setAttribute("aria-selected", "true");
+      inactiveBtn.classList.remove("active");
+      inactiveBtn.setAttribute("aria-selected", "false");
+
+      hidePanel.classList.remove("active");
+      hidePanel.hidden = true;
+
+      showPanel.hidden = false;
+      showPanel.classList.add("active");
+
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    };
+
+    tabExp.addEventListener("click", () => switchTab(tabExp, tabEdu, panelExp, panelEdu));
+    tabEdu.addEventListener("click", () => switchTab(tabEdu, tabExp, panelEdu, panelExp));
+  }
+  
   if (!hasGSAP || reduceMotion) {
     document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("revealed"));
     hideLoader();
