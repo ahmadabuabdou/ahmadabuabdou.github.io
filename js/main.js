@@ -244,7 +244,7 @@ function buildTatreezBand(container) {
   const olive = "var(--olive)";
   const cy = 23;
   const start = 15;
-  const step = 34;
+  const step = 44;
 
   for (let x = start; x <= 1185; x += step) {
     make(`M ${x} ${cy - 7} L ${x + 14} ${cy + 7} M ${x + 14} ${cy - 7} L ${x} ${cy + 7}`, red, 2.4);
