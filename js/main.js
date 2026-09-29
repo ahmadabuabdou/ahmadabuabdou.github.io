@@ -163,7 +163,7 @@ const I18N = {
 };
 
 let LANG = localStorage.getItem("abdou-lang") || "en";
-let THEME = localStorage.getItem("abdou-theme") || "dark";
+let THEME = localStorage.getItem("abdou-theme") || "light";
 
 /* ── 2. APPLY LANGUAGE / THEME ───────────────────────── */
 function applyLang(lang, animate = false) {
