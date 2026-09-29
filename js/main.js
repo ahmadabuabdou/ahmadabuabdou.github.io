@@ -59,7 +59,7 @@ const I18N = {
     "contact.email": "ahmad.a.k.abuabdou@gmail.com",
     "contact.cv": "Download CV ↗",
     "footer.line": "Designed & built with resilience in Gaza, Palestine 🍉",
-    "footer.copy": "© 2026 Ahmad Abu Abdou — أحمد أبو عبده",
+    "footer.copy": "© 2026 Ahmad Abu Abdou — أحمد أبو عبدو",
     "cursor.view": "View",
     "marquee": ["Storytelling", "UX Design", "Resilience", "Gaza 🇵🇸", "Empathy", "Clarity", "Open Screenplay"],
     "exp.kicker": "Trajectory",
@@ -135,7 +135,7 @@ const I18N = {
     "contact.email": "ahmad.a.k.abuabdou@gmail.com",
     "contact.cv": "تحميل السيرة الذاتية ↗",
     "footer.line": "صُمّم وبُني بصمود في غزة، فلسطين 🍉",
-    "footer.copy": "© 2026 أحمد أبو عبده — Ahmad Abu Abdou",
+    "footer.copy": "© 2026 أحمد أبو عبدو — Ahmad Abu Abdou",
     "cursor.view": "عرض",
     "marquee": ["سرد القصص", "تجربة المستخدم", "الصمود", "غزة 🇵🇸", "التعاطف", "الوضوح", "Open Screenplay"],
     "exp.kicker": "المسار المهني",
@@ -193,7 +193,7 @@ function applyLang(lang, animate = false) {
 
   buildMarquee();
   document.title = lang === "ar"
-    ? "أحمد أبو عبده — مصمّم UX/UI · غزة، فلسطين"
+    ? "أحمد أبو عبدو — مصمّم UX/UI · غزة، فلسطين"
     : "Ahmad Abu Abdou — UX/UI Designer · Gaza, Palestine";
 }
 
@@ -233,6 +233,8 @@ function buildTatreezBand(container) {
     p.setAttribute("stroke-width", width);
     p.setAttribute("stroke-linecap", "round");
     p.setAttribute("pathLength", "1");
+    p.setAttribute("stroke-dasharray", "1");
+    p.setAttribute("stroke-dashoffset", "1");
     p.style.strokeDasharray = "1";
     p.style.strokeDashoffset = "1";
     svg.appendChild(p);
@@ -260,8 +262,51 @@ function buildTatreezBand(container) {
   container.appendChild(svg);
 }
 
+let bandTweens = [];
+let lastBandWidth = 0;
+
 function buildAllBands() {
   document.querySelectorAll("[data-band]").forEach(buildTatreezBand);
+  const first = document.querySelector("[data-band]");
+  lastBandWidth = first ? first.clientWidth : 0;
+}
+
+function showBandsDrawn() {
+  document.querySelectorAll("[data-band] path").forEach((p) => {
+    p.style.strokeDashoffset = "0";
+    p.setAttribute("stroke-dashoffset", "0");
+  });
+}
+
+function killBandTweens() {
+  bandTweens.forEach((t) => t.kill());
+  bandTweens = [];
+}
+
+function bindBandScroll() {
+  if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") {
+    showBandsDrawn();
+    return;
+  }
+  killBandTweens();
+  gsap.utils.toArray("[data-band]").forEach((band) => {
+    const paths = band.querySelectorAll("path");
+    if (!paths.length) return;
+    gsap.set(paths, { strokeDashoffset: 1 });
+    const tween = gsap.to(paths, {
+      strokeDashoffset: 0,
+      ease: "none",
+      stagger: 0.04,
+      scrollTrigger: {
+        trigger: band,
+        start: "top 92%",
+        end: "top 45%",
+        scrub: 1,
+        invalidateOnRefresh: true
+      }
+    });
+    bandTweens.push(tween);
+  });
 }
 
 /* Hero frame stitch border */
@@ -331,15 +376,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (!hasGSAP || reduceMotion) {
     document.querySelectorAll("[data-reveal]").forEach((el) => el.classList.add("revealed"));
+    showBandsDrawn();
     hideLoader();
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
-  /* ── Lenis smooth scroll ── */
+  /* ── Lenis smooth scroll (desktop only — native scroll on touch) ── */
   let lenis = null;
-  if (typeof Lenis !== "undefined") {
+  const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+  if (typeof Lenis !== "undefined" && !coarsePointer) {
     lenis = new Lenis({ duration: 1.15, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
     lenis.on("scroll", ScrollTrigger.update);
     gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -380,20 +428,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ── Tatreez bands: stitch themselves on scroll ── */
-  gsap.utils.toArray("[data-band]").forEach((band) => {
-    const paths = band.querySelectorAll("path");
-    gsap.to(paths, {
-      strokeDashoffset: 0,
-      ease: "none",
-      stagger: 0.04,
-      scrollTrigger: {
-        trigger: band,
-        start: "top 92%",
-        end: "top 45%",
-        scrub: 1
-      }
-    });
-  });
+  bindBandScroll();
 
   /* ── Parallax images ── */
   gsap.utils.toArray("[data-parallax]").forEach((img) => {
@@ -478,21 +513,38 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ── Rebuild bands on resize (debounced) ── */
+  /* ── Rebuild bands when width actually changes ── */
   let rt;
   window.addEventListener("resize", () => {
     clearTimeout(rt);
-    rt = setTimeout(() => { buildAllBands(); ScrollTrigger.refresh(); }, 250);
+    rt = setTimeout(() => {
+      const first = document.querySelector("[data-band]");
+      const w = first ? first.clientWidth : 0;
+      if (w && w === lastBandWidth) {
+        ScrollTrigger.refresh();
+        return;
+      }
+      buildAllBands();
+      bindBandScroll();
+      ScrollTrigger.refresh();
+    }, 250);
   });
 });
 
 function hideLoader(animated = false) {
   const loader = document.querySelector(".loader");
-  if (!loader) return;
+  const after = () => {
+    if (loader) loader.remove();
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+  };
+  if (!loader) {
+    if (window.ScrollTrigger) ScrollTrigger.refresh();
+    return;
+  }
   if (animated && window.gsap) {
     gsap.to(loader, {
       opacity: 0, duration: 0.7, delay: 0.6, ease: "power2.inOut",
-      onComplete: () => loader.remove()
+      onComplete: after
     });
-  } else loader.remove();
+  } else after();
 }

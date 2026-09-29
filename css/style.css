@@ -424,9 +424,17 @@ body[data-lang="ar"] .chapter-final { font-family: var(--font-ar-display); }
 .tatreez-band {
   max-width: 1200px; margin: 0 auto;
   padding: 0 clamp(20px, 6vw, 96px);
-  height: 46px; opacity: 0.9;
+  width: 100%;
+  height: 46px;
+  opacity: 0.9;
+  overflow: visible;
 }
-.tatreez-band svg { width: 100%; height: 46px; overflow: visible; }
+.tatreez-band svg {
+  display: block;
+  width: 100%;
+  height: 46px;
+  overflow: visible;
+}
 
 /* ── Work ──────────────────────────────────────────── */
 .work { padding: clamp(80px, 12vw, 160px) clamp(20px, 6vw, 96px); }
@@ -564,6 +572,7 @@ body[data-lang="ar"] .contact-title { font-family: var(--font-ar-display); line-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
+  [data-band] path { stroke-dashoffset: 0 !important; }
 }
 /* ── Experience & Education Timeline ─────────────────── */
 .experience {
