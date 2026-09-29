@@ -80,18 +80,21 @@ button { font: inherit; background: none; border: 0; color: inherit; cursor: poi
 }
 .cursor-dot { width: 8px; height: 8px; background: var(--red); }
 .cursor-ring {
-  width: 42px; height: 42px;
-  border: 1.5px solid var(--red);
+  width: 46px; height: 46px;
+  border: none;
+  background: url("../assets/tatreez-cursor.svg") center/contain no-repeat;
   display: flex; align-items: center; justify-content: center;
+  box-shadow: none;
   transition: width 0.35s var(--ease-out), height 0.35s var(--ease-out),
-              background 0.35s var(--ease-out), opacity 0.3s;
+              opacity 0.3s, transform 0.3s;
 }
-.cursor-ring.is-hover { width: 64px; height: 64px; background: var(--red-soft); }
-.cursor-ring.is-view { width: 88px; height: 88px; background: var(--red); }
+.cursor-ring.is-hover { width: 64px; height: 64px; }
+.cursor-ring.is-view { width: 88px; height: 88px; }
 .cursor-label {
   font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
   color: #fff; opacity: 0; text-transform: uppercase;
   transition: opacity 0.25s;
+  position: relative; z-index: 1;
 }
 .cursor-ring.is-view .cursor-label { opacity: 1; }
 @media (hover: none), (pointer: coarse) {
@@ -222,6 +225,38 @@ html[data-theme="light"] .hero-bg-pattern {
   max-width: 1400px; margin: 0 auto; width: 100%;
 }
 
+.availability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.availability-status {
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #5cc86e;
+  box-shadow: 0 0 0 0 rgba(92, 200, 110, 0.7);
+  animation: pulseStatus 2s infinite;
+  flex-shrink: 0;
+}
+@keyframes pulseStatus {
+  0% { box-shadow: 0 0 0 0 rgba(92, 200, 110, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(92, 200, 110, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(92, 200, 110, 0); }
+}
+
 .hero-eyebrow {
   display: flex; align-items: center; gap: 12px;
   font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
@@ -329,6 +364,77 @@ html[dir="rtl"] .scroll-hint { transform: translateX(50%); }
 body[data-lang="ar"] .marquee-chunk { font-family: var(--font-ar-display); font-weight: 400; }
 .marquee-chunk .mx { color: var(--red); font-family: var(--font-body); font-size: 0.7em; }
 .marquee-chunk .m-outline { color: transparent; -webkit-text-stroke: 1.2px var(--muted); }
+
+/* ── Impact metrics strip ───────────────────────────── */
+.impact-strip {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px clamp(20px, 6vw, 96px) 22px;
+}
+.impact-divider {
+  max-width: 1200px;
+  opacity: 0.9;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 6vw, 96px);
+}
+.impact-divider svg {
+  width: 100%;
+  height: 46px;
+  display: block;
+}
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 42px);
+  padding: 36px 0 28px;
+}
+.impact-item {
+  text-align: center;
+  padding: 10px 12px;
+}
+.impact-value {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4vw, 62px);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.impact-label {
+  margin-top: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.impact-item p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.45;
+}
+
+@media (max-width: 720px) {
+  .impact-strip {
+    padding-top: 22px;
+    padding-bottom: 18px;
+  }
+  .impact-divider {
+    gap: 8px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+  .impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 14px;
+    padding-top: 28px;
+  }
+  .impact-label {
+    letter-spacing: 0.08em;
+  }
+}
 
 /* ── Sections shared ───────────────────────────────── */
 section { position: relative; }

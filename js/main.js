@@ -212,7 +212,7 @@ function buildMarquee() {
     `<div class="marquee-chunk">` +
     words.map((w, i) => `<span class="${i % 2 ? "m-outline" : ""}">${w}</span><span class="mx">✕</span>`).join("") +
     `</div>`;
-  track.innerHTML = chunk() + chunk() + chunk();
+  track.innerHTML = chunk() + chunk();
 }
 
 /* ── 4. TATREEZ STITCH GENERATOR ─────────────────────── */
@@ -446,14 +446,29 @@ window.addEventListener("DOMContentLoaded", () => {
   /* ── Marquee loop (RTL-aware direction) ── */
   const track = document.getElementById("marqueeTrack");
   const dir = () => (document.documentElement.dir === "rtl" ? 1 : -1);
+  const getMarqueeDistance = () => (track.scrollWidth / 2) * -1 * dir();
+
+  gsap.set(track, { x: 0 });
   let marqueeTween = gsap.to(track, {
-    xPercent: dir() * -33.333,
-    ease: "none", duration: 22, repeat: -1
+    x: getMarqueeDistance(),
+    ease: "none",
+    duration: 22,
+    repeat: -1,
+    repeatRefresh: true,
+    yoyo: false
   });
+
   document.getElementById("langToggle").addEventListener("click", () => {
     marqueeTween.kill();
-    gsap.set(track, { xPercent: 0 });
-    marqueeTween = gsap.to(track, { xPercent: dir() * -33.333, ease: "none", duration: 22, repeat: -1 });
+    gsap.set(track, { x: 0 });
+    marqueeTween = gsap.to(track, {
+      x: getMarqueeDistance(),
+      ease: "none",
+      duration: 22,
+      repeat: -1,
+      repeatRefresh: true,
+      yoyo: false
+    });
   });
 
   /* ── Scroll thread progress ── */
