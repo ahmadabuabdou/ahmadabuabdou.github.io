@@ -218,23 +218,22 @@ function buildMarquee() {
 /* ── 4. TATREEZ STITCH GENERATOR ─────────────────────── */
 /* A band of cross-stitch X motifs + diamonds, drawn on scroll */
 function buildTatreezBand(container) {
-  const w = container.clientWidth || 800;
-  const h = 46;
-  const step = 44;
   const ns = "http://www.w3.org/2000/svg";
   const svg = document.createElementNS(ns, "svg");
-  svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  svg.setAttribute("viewBox", "0 0 1200 46");
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
 
   const make = (d, color, width) => {
     const p = document.createElementNS(ns, "path");
     p.setAttribute("d", d);
     p.setAttribute("fill", "none");
-    p.style.stroke = color; // CSS var works via style, not attribute
-    p.setAttribute("stroke-width", width);
+    p.setAttribute("stroke", color);
+    p.setAttribute("stroke-width", String(width));
     p.setAttribute("stroke-linecap", "round");
     p.setAttribute("pathLength", "1");
     p.setAttribute("stroke-dasharray", "1");
     p.setAttribute("stroke-dashoffset", "1");
+    p.style.stroke = color;
     p.style.strokeDasharray = "1";
     p.style.strokeDashoffset = "1";
     svg.appendChild(p);
@@ -243,19 +242,15 @@ function buildTatreezBand(container) {
 
   const red = "var(--red)";
   const olive = "var(--olive)";
-  const cy = h / 2;
+  const cy = 23;
+  const start = 15;
+  const step = 34;
 
-  for (let x = step / 2; x < w; x += step) {
-    // central X stitch
-    make(`M ${x - 7} ${cy - 7} L ${x + 7} ${cy + 7} M ${x + 7} ${cy - 7} L ${x - 7} ${cy + 7}`, red, 2.4);
-    // flanking small diamonds
-    const dx = x + step / 2;
-    if (dx < w) {
-      make(`M ${dx} ${cy - 8} L ${dx + 8} ${cy} L ${dx} ${cy + 8} L ${dx - 8} ${cy} Z`, olive, 1.6);
-    }
-    // tiny cross dots above & below
-    make(`M ${x} ${cy - 16} L ${x} ${cy - 10} M ${x - 3} ${cy - 13} L ${x + 3} ${cy - 13}`, olive, 1.4);
-    make(`M ${x} ${cy + 10} L ${x} ${cy + 16} M ${x - 3} ${cy + 13} L ${x + 3} ${cy + 13}`, olive, 1.4);
+  for (let x = start; x <= 1185; x += step) {
+    make(`M ${x} ${cy - 7} L ${x + 14} ${cy + 7} M ${x + 14} ${cy - 7} L ${x} ${cy + 7}`, red, 2.4);
+    make(`M ${x + 29} ${cy - 8} L ${x + 37} ${cy} L ${x + 29} ${cy + 8} L ${x + 21} ${cy} Z`, olive, 1.6);
+    make(`M ${x + 7} ${cy - 16} L ${x + 7} ${cy - 10} M ${x + 4} ${cy - 13} L ${x + 10} ${cy - 13}`, olive, 1.4);
+    make(`M ${x + 7} ${cy + 10} L ${x + 7} ${cy + 16} M ${x + 4} ${cy + 13} L ${x + 10} ${cy + 13}`, olive, 1.4);
   }
 
   container.innerHTML = "";

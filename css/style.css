@@ -428,12 +428,19 @@ body[data-lang="ar"] .chapter-final { font-family: var(--font-ar-display); }
   height: 46px;
   opacity: 0.9;
   overflow: visible;
+  min-height: 46px;
 }
 .tatreez-band svg {
   display: block;
   width: 100%;
   height: 46px;
   overflow: visible;
+  min-width: 0;
+}
+@media (max-width: 480px) {
+  .tatreez-band {
+    padding-inline: 10px;
+  }
 }
 
 /* ── Work ──────────────────────────────────────────── */
